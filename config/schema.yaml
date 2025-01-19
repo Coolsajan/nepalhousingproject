@@ -1,0 +1,60 @@
+columns:
+  -price: float64
+  -location: category
+  -area: float64
+  -facing: category
+  -no_of_bedroom: float64
+  -no_of_bathroom: float64
+  -no_of_livingroom: float64
+  -no_of_kitchen: float64
+  -parking: float64
+  -road_size: float64
+  -furniture: category
+  -no_of_flat: float64
+
+numerical_columns:
+  -price
+  -area
+  -no_of_bedroom
+  -no_of_bathroom
+  -no_of_livingroom
+  -no_of_kitchen
+  -parking
+  -road_size
+  -no_of_flat
+
+categorical_columns:
+  -location
+  -facing
+  -furniture
+
+replace_zero:
+  -price
+  -area
+  -no_of_bedroom
+  -no_of_bathroom
+  -no_of_livingroom
+  -no_of_kitchen
+  -road_size
+  -no_of_flat
+
+knn_columns:
+  -no_of_bedroom
+  -no_of_bathroom
+  -no_of_livingroom
+  -no_of_kitchen
+  -parking
+  -road_size
+  -no_of_flat
+
+oe_columns:
+  -furniture
+  -facing
+
+ohe_columns:
+  -location
+
+knn_columns:
+  -furniture
+  -facing
+

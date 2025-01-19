@@ -14,7 +14,6 @@ ARTIFACT_DIR: str = "artifact"
 MODEL_FILE_NAME = "model.pkl"
 
 TARGET_COLUMN = "price"
-CURRENT_YEAR = datetime.today().year
 PREPROCSSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 
 FILE_NAME: str = "nepal_hosuing_datetset.csv" 
