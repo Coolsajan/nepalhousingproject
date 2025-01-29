@@ -32,8 +32,6 @@ This will install all the required libaries that are mentioned in requiremenets.
 #workflow- dataingestion
 1-> contants
 2->entity(artifact)
-3->Connection with server
-4->dataaxcess
 5->components
 6->pipeline
 

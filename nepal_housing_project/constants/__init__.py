@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 
-DATABASE_NAME="nepal_housing_project"
+DATABASE_NAME="ktmhousingproject"
 
 COLLECTION_NAME='housing_data'
 
@@ -13,7 +13,7 @@ ARTIFACT_DIR: str = "artifact"
 
 MODEL_FILE_NAME = "model.pkl"
 
-TARGET_COLUMN = "price"
+TARGET_COLUMN = "PRICE"
 PREPROCSSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 
 FILE_NAME: str = "nepal_hosuing_datetset.csv" 
@@ -48,7 +48,7 @@ DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = "report.yaml"
 
 
 """
-Data Transformation ralated constant start with DATA_TRANSFORMATION VAR NAME
+Data Transformation related constant start with DATA_TRANSFORMATION VAR NAME
 """
 DATA_TRANSFORMATION_DIR_NAME: str = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR: str = "transformed"
