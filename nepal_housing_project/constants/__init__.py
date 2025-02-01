@@ -16,7 +16,7 @@ MODEL_FILE_NAME = "model.pkl"
 TARGET_COLUMN = "PRICE"
 PREPROCSSING_OBJECT_FILE_NAME = "preprocessing.pkl"
 
-FILE_NAME: str = "nepal_hosuing_datetset.csv" 
+FILE_NAME: str = "hosuing_datetset.csv" 
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
 SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")

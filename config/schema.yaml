@@ -1,52 +1,51 @@
 columns:
-  -PRICE : float64
-  -LOCATION: category
-  -LAND AREA: float64
-  -FACING: category
-  -ROAD ACESS: float64
-  -BEDROOM: float64
-  -BATHROOM: float64
-  -PROPERTY AGE: float64
-  -FLOOR: float64
+  - LOCATION : category
+  - PRICE : float64
+  - LAND AREA : float64
+  - ROAD ACCESS : float64
+  - FACING : category
+  - FLOOR : float64
+  - BEDROOM : float64
+  - BATHROOM : float64
+  - PROPERTY AGE : float64
+  - CITY : category
 
 numerical_columns:
-  -PRICE
-  -LAND AREA
-  -BEDROOM
-  -BATHROOM
-  -FLOOR
-  -PROPERY AGE
-  -ROAD ACESS
+  - PRICE
+  - LAND AREA
+  - BEDROOM
+  - BATHROOM
+  - FLOOR
+  - PROPERTY AGE
+  - ROAD ACCESS
 
 categorical_columns:
-  -LOCATION
-  -FACING
-  -LOCATION
-
-replace_zero:
-  -LAND AREA
-
+  - LOCATION
+  - FACING
 
 oe_columns:
-  -FACING
+  - FACING
 
 ohe_columns:
-  -LOCATION
+  - LOCATION
 
 power_transformer:
-  -LAND AREA
-  -BEDROOM
-  -BATHROOM
-  -FLOOR
-  -PROPERY AGE
-  -ROAD ACESS
+  - LAND AREA
+  - BEDROOM
+  - BATHROOM
+  - FLOOR
+  - PROPERTY AGE
+  - ROAD ACCESS
 
 si_num_columns:
-  -ROAD ACESS
-  -FLOOR
-  -BEDROOM
-  -BATHROOM
+  - ROAD ACCESS
+  - FLOOR
+  - BEDROOM
+  - BATHROOM
+  - CITY
 
 si_cate_columns:
-  -FACING
+  - FACING
+  - LOCATION
+
 

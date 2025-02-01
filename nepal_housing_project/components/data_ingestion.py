@@ -2,14 +2,14 @@ import os
 import sys
 
 from sklearn.model_selection import train_test_split
-import pandas as pd
+from pandas import DataFrame
 
 from nepal_housing_project.entity.config_entity import DataIngestionConfig
 from nepal_housing_project.entity.artifact_entity import DataingestionArtifact
 from nepal_housing_project.logger import logging
 from nepal_housing_project.exception import hosuingprojectException
 from nepal_housing_project.data_acess.data import housingdata
-
+     
 
 class DataIngestion:
     def __init__(self,data_ingestion_config:DataIngestionConfig=DataIngestionConfig()):
@@ -17,11 +17,11 @@ class DataIngestion:
         :param data_ingestion_config: configuration for data ingestion
         """
         try:
-            self.data_ingestion_config=data_ingestion_config
+            self.data_ingestion_config = data_ingestion_config
         except Exception as e:
             raise hosuingprojectException(e,sys)
-        
-    def export_data_into_feature_store(self)->pd.DataFrame:
+
+    def export_data_into_feature_store(self)->DataFrame:
         """
         Method Name :   export_data_into_feature_store
         Description :   This method exports data from mongodb to csv file
@@ -44,9 +44,8 @@ class DataIngestion:
 
         except Exception as e:
             raise hosuingprojectException(e,sys)
-        
 
-    def split_data_as_train_test(self,dataframe: pd.DataFrame) ->None:
+    def split_data_as_train_test(self,dataframe: DataFrame) ->None:
         """
         Method Name :   split_data_as_train_test
         Description :   This method splits the dataframe into train set and test set based on split ratio 
@@ -72,10 +71,7 @@ class DataIngestion:
             logging.info(f"Exported train and test file path.")
         except Exception as e:
             raise hosuingprojectException(e, sys) from e
-        
 
-
-    
     def initiate_data_ingestion(self) ->DataingestionArtifact:
         """
         Method Name :   initiate_data_ingestion

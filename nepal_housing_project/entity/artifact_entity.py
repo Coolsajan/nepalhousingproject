@@ -11,7 +11,7 @@ class DataingestionArtifact:
 class DataValidationArtifact:
     validation_status:bool
     message:str
-    drift_report_flie_path:str
+    drift_report_drift_flie_path:str
     
 @dataclass
 class DataTransformationArtifact:

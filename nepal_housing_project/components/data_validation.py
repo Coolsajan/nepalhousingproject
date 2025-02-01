@@ -6,6 +6,7 @@ from nepal_housing_project.logger import logging
 
 from pandas import DataFrame
 import pandas as pd
+import numpy as np
 from nepal_housing_project.utils.main_utils import read_yaml_file,write_yaml_file
 from nepal_housing_project.entity.artifact_entity import DataingestionArtifact,DataValidationArtifact
 from nepal_housing_project.entity.config_entity import DataValidationConfig
@@ -27,27 +28,45 @@ class DataValidation:
             self._schema_config=read_yaml_file(file_path=SCHEMA_FILE_PATH)
         except Exception as e:
             raise hosuingprojectException(e,sys)
-
-    def validate_no_of_columns(self,df:DataFrame) ->bool:
+        
+    def validate_number_of_columns(self, dataframe: DataFrame) -> bool:
         """
-        Method Name : is_column_exist
-        Description : This menthod validates the existence of a numerical and categorical columns
-
-        Output : Return bool value on validation result
-        On Falier : Write an exception log and the raise an exception
+        Method Name :   validate_number_of_columns
+        Description :   This method validates the number of columns
+        
+        Output      :   Returns bool value based on validation results
+        On Failure  :   Write an exception log and then raise an exception
         """
         try:
-            dataframe_columns=df.columns
-            missing_numerical_columns=[]
-            missing_categorical_columns=[]
-            for column in self._schema_config['numerical_columns']:
+            status = len(dataframe.columns) == len(self._schema_config["columns"])
+            logging.info(f"Is required column present: [{status}]")
+            return status
+        except Exception as e:
+            raise hosuingprojectException(e, sys)
+
+    def is_column_exist(self, df: DataFrame) -> bool:
+        """
+        Method Name :   is_column_exist
+        Description :   This method validates the existence of a numerical and categorical columns
+        
+        Output      :   Returns bool value based on validation results
+        On Failure  :   Write an exception log and then raise an exception
+        """
+        try:
+            dataframe_columns = df.columns
+            #dataframe_num_columns=[column for column in dataframe_columns if df[column].dtype !="O"]
+            #dataframe_cate_columns=[column for column in dataframe_columns if df[column].dtype =="O"]
+            missing_numerical_columns = []
+            missing_categorical_columns = []
+            for column in self._schema_config["numerical_columns"]:
                 if column not in dataframe_columns:
                     missing_numerical_columns.append(column)
 
-            if len(missing_categorical_columns)>0:
+            if len(missing_numerical_columns)>0:
                 logging.info(f"Missing numerical column: {missing_numerical_columns}")
 
-            for column in self._schema_config['categorical_columns:']:
+
+            for column in self._schema_config["categorical_columns"]:
                 if column not in dataframe_columns:
                     missing_categorical_columns.append(column)
 
@@ -56,7 +75,7 @@ class DataValidation:
 
             return False if len(missing_categorical_columns)>0 or len(missing_numerical_columns)>0 else True
         except Exception as e:
-            raise hosuingprojectException(e,sys) from e
+            raise hosuingprojectException(e, sys) from e
             
     @staticmethod
     def read_data(file_path)->DataFrame:
@@ -65,77 +84,84 @@ class DataValidation:
         except Exception as e:
             raise hosuingprojectException(e,sys)
         
-    def detect_dataset_drift(self,reference_df:DataFrame,current_df:DataFrame)-> bool:
+    def detect_dataset_drift(self, reference_df: DataFrame, current_df: DataFrame, ) -> bool:
         """
-        Method Name : detect_dataset_drift
-        Description : This method validates if drift is deteced
-
-        Output : Return bool value based on validation results
-        on failuers : Write an exception log and then raise an exception    
+        Method Name :   detect_dataset_drift
+        Description :   This method validates if drift is detected
+        
+        Output      :   Returns bool value based on validation results
+        On Failure  :   Write an exception log and then raise an exception
         """
-        try: 
-            data_drift_profile=Profile(selection=[DataDriftProfileSection()])
-            
-            data_drift_profile.calculate(reference_df,current_df)
+        try:
+            data_drift_profile = Profile(sections=[DataDriftProfileSection()])
 
-            report=data_drift_profile.json()
-            json_report=json.loads(report)
+            data_drift_profile.calculate(reference_df, current_df)
 
-            write_yaml_file(file_path=self.data_validation_config.data_drift_flie_path)
+            report = data_drift_profile.json()
+            json_report = json.loads(report)
 
-            n_features=json_report['data_drift']['data']['metrics']['n_features']
-            n_drifted_feature=json_report['data_drift']['data']['metrics']['n_drifted_features']
+            write_yaml_file(file_path=self.data_validation_config.drift_report_drift_flie_path, content=json_report)
 
-            logging.info(f"{n_drifted_feature}/{n_features} drift detected")
-            drift_status=json_report['data_drift']['data']['metrics']['dataset_drift']
+            n_features = json_report["data_drift"]["data"]["metrics"]["n_features"]
+            n_drifted_features = json_report["data_drift"]["data"]["metrics"]["n_drifted_features"]
+
+            logging.info(f"{n_drifted_features}/{n_features} drift detected.")
+            drift_status = json_report["data_drift"]["data"]["metrics"]["dataset_drift"]
             return drift_status
         except Exception as e:
             raise hosuingprojectException(e,sys) from e
         
     def initiate_data_validation(self) -> DataValidationArtifact:
         """
-        Method Name : initiate_data_validation
-        Description : This menthod will initiate data valiation component from the pipeline
-
-        Output : Return bool value based on validation results
-        On failure : Write an exception log and then raise an exception        
+        Method Name :   initiate_data_validation
+        Description :   This method initiates the data validation component for the pipeline
+        
+        Output      :   Returns bool value based on validation results
+        On Failure  :   Write an exception log and then raise an exception
         """
+
         try:
-            validation_error_message=""
-            logging.info("Starting of validation.")
-            train_df,test_df=(DataValidation.read_data(file_path=self.data_ingestion_artifact.trained_file_path),
-                              DataValidation.read_data(file_path=self.data_ingestion_artifact.test_file_path))
-            
-            status=self.validate_no_of_columns(df=train_df)
-            logging.info(f"All reuired columns presents in tranning dataframe:{status}")
-            if not status:
-                validation_error_message += f"Columns are missing in tranning dataframe."
-            status=self.validate_no_of_columns(df=test_df)
+            validation_error_msg = ""
+            logging.info("Starting data validation")
+            train_df, test_df = (DataValidation.read_data(file_path=self.data_ingestion_artifact.trained_file_path),
+                                 DataValidation.read_data(file_path=self.data_ingestion_artifact.test_file_path))
 
-            logging.info(f"All required columns prosent in testing dataframe: {status}")
+            status = self.validate_number_of_columns(dataframe=train_df)
+            logging.info(f"All required columns present in training dataframe: {status}")
             if not status:
-                validation_error_message+=f"Columns are missing inthe test dataframe"
+                validation_error_msg += f"Columns are missing in training dataframe."
+            status = self.validate_number_of_columns(dataframe=test_df)
 
-            statuts=self.is_column_exist(df=train_df)
+            logging.info(f"All required columns present in testing dataframe: {status}")
+            if not status:
+                validation_error_msg += f"Columns are missing in test dataframe."
+
+            status = self.is_column_exist(df=train_df)
 
             if not status:
-                validation_error_message+=f"Columns are missing in test dataframe."
-                validation_status=len(validation_error_message)==0
+                validation_error_msg += f"Columns are missing in training dataframe."
+            status = self.is_column_exist(df=test_df)
+
+            if not status:
+                validation_error_msg += f"columns are missing in test dataframe."
+
+            validation_status = len(validation_error_msg) == 0
 
             if validation_status:
                 drift_status = self.detect_dataset_drift(train_df, test_df)
                 if drift_status:
                     logging.info(f"Drift detected.")
-                    validation_error_message = "Drift detected"
+                    validation_error_msg = "Drift detected"
                 else:
-                    validation_error_message = "Drift not detected"
+                    validation_error_msg = "Drift not detected"
             else:
-                logging.info(f"Validation_error: {validation_error_message}")
+                logging.info(f"Validation_error: {validation_error_msg}")
+                
 
             data_validation_artifact = DataValidationArtifact(
                 validation_status=validation_status,
-                message=validation_error_message,
-                drift_report_file_path=self.data_validation_config.drift_report_file_path
+                message=validation_error_msg,
+                drift_report_drift_flie_path=self.data_validation_config.drift_report_drift_flie_path
             )
 
             logging.info(f"Data validation artifact: {data_validation_artifact}")
@@ -143,6 +169,7 @@ class DataValidation:
         except Exception as e:
             raise hosuingprojectException(e, sys) from e
             
+
 
             
             

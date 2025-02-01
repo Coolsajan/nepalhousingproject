@@ -41,6 +41,7 @@ class DataTransformation:
             raise hosuingprojectException(e,sys)
         
     def get_data_transformer_object(self)-> Pipeline:
+    
         """
         Method Name : get_data_transformer_object
         Description : This method creates and return a data transformer object for the data
@@ -54,15 +55,16 @@ class DataTransformation:
         try:
             logging.info("Got numerical cols from schema config")
 
-            or_transformer=OrdinalEncoder()
-            ohe_transformer=OneHotEncoder()
+            oe_transformer=OrdinalEncoder()
+            ohe_transformer=OneHotEncoder(sparse_output=False,handle_unknown="infrequent_if_exist")
             si_num_transformer=SimpleImputer(strategy="median")
             si_cate_transformer=SimpleImputer(strategy="most_frequent")
 
 
             logging.info("Initilization Ordinal Encoding,OneHot Encoding")
 
-            or_columns=self._schema_config['oe_columns']
+            oe_columns=self._schema_config['oe_columns']
+
             ohe_columns=self._schema_config['ohe_columns']
             si_num_columns=self._schema_config['si_num_columns']
             si_cate_columns=self._schema_config['si_cate_columns']
@@ -74,20 +76,26 @@ class DataTransformation:
                 ("transformer_column",PowerTransformer(method="yeo-johnson"))
             ])
 
+
             preprocessor=ColumnTransformer([
-                ("simpleImputer_num",si_num_transformer,si_num_columns),
-                ("simpleImputer_cate",si_cate_transformer,si_cate_columns),
-                ("powertransformer",transfrom_pipe,powertransform_columns),
+                ("si_cate",si_cate_transformer,si_cate_columns),
+                ("si_num",si_num_transformer,si_num_columns),
+                ("ordinal_encoder",oe_transformer,oe_columns),
                 ("onehot_encoder",ohe_transformer,ohe_columns),
-                ("ordinal_encoder",or_transformer,or_columns)]                
+                ("powertransformer",transfrom_pipe,powertransform_columns)
+
+                ]                
                 ,remainder='passthrough')
             
-            logging.info("Data Transformation Ended.")
+            logging.info("Data Transformation .preprocess object achived.")
             return preprocessor
         except Exception as e:
             raise hosuingprojectException(e,sys)
 
-    def initiate_data_transformation(self,)->DataTransformationArtifact:
+
+
+
+    def initiate_data_transformation(self, )->DataTransformationArtifact:
         """
         Method Name : initate_data_transformation
         Description : This method iniatiate the data transformation component for the pipeline
@@ -97,25 +105,27 @@ class DataTransformation:
         """
         try:
             if self.data_validation_artifact.validation_status:
-                logging.info("Dtarting data Transformation")
+                logging.info("Starting data Transformation")
                 preprocessor=self.get_data_transformer_object()
                 logging.info("Got the processor object")
 
                 train_df=DataTransformation.read_data(file_path=self.data_ingestion_artifact.trained_file_path)
                 test_df=DataTransformation.read_data(file_path=self.data_ingestion_artifact.test_file_path)
+                train_df['LAND AREA']=train_df['LAND AREA'].replace(to_replace={0:np.nan,2.5:np.nan,4.2:np.nan,4.5:np.nan,9.25:np.nan})
+                test_df['LAND AREA']=test_df['LAND AREA'].replace(to_replace={0:np.nan,2.5:np.nan,4.2:np.nan,4.5:np.nan,9.25:np.nan})
+
+
+
+                train_df=train_df.dropna(subset=["PRICE","LAND AREA"])
+                test_df=test_df.dropna(subset=["PRICE","LAND AREA"])
+
+
 
                 input_feature_train_df = train_df.drop(columns=[TARGET_COLUMN], axis=1)
                 target_feature_train_df = train_df[TARGET_COLUMN]
 
                 logging.info("GOT train feature and test feature of training dataset")
 
-                input_feature_train_df["CITY"]=input_feature_train_df["location"].str.split(",").str[1]
-                input_feature_train_df["LOCATION"]=input_feature_train_df["location"].str.split(",").str[0]
-
-                logging.info("City added on train dataset")
-
-                input_feature_train_df["CITY"]=input_feature_train_df["CITY"].apply(lambda x:x.lower())
-                input_feature_train_df["CITY"]=input_feature_train_df["CITY"].str.replace(' ', '', regex=True)
 
                 input_feature_train_df["CITY"]=input_feature_train_df["CITY"].replace(CitytValueMapping()._asdict())
 
@@ -123,16 +133,13 @@ class DataTransformation:
 
                 logging.info("taget_feature_train log transformed")
 
-                input_feature_test_df = train_df.drop(columns=[TARGET_COLUMN], axis=1)
-                target_feature_test_df = train_df[TARGET_COLUMN]
+                input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN], axis=1)
+                target_feature_test_df = test_df[TARGET_COLUMN]
 
-                input_feature_test_df["CITY"]=input_feature_test_df["location"].str.split(",").str[1]
-                input_feature_test_df["LOCATION"]=input_feature_test_df["location"].str.split(",").str[0]
+                input_feature_test_df['LAND AREA']=input_feature_test_df['LAND AREA'].replace(to_replace={0:np.nan,2.5:np.nan,4.2:np.nan,4.5:np.nan,9.25:np.nan})
 
                 logging.info("City added on test dataset")
 
-                input_feature_test_df["CITY"]=input_feature_test_df["CITY"].apply(lambda x:x.lower())
-                input_feature_test_df["CITY"]=input_feature_test_df["CITY"].str.replace(' ', '', regex=True)
 
                 input_feature_test_df["CITY"]=input_feature_test_df["CITY"].replace(CitytValueMapping()._asdict())
 
@@ -142,14 +149,14 @@ class DataTransformation:
 
                 logging.info("Got tain feature and test feature of testing dataset")
 
-                logging.info("Applying preprocessory object on traning dataframe and testinf dataframe")
-
-                input_feature_train_arr=preprocessor.fit_transform(input_feature_train_df)
+                logging.info("Applying preprocessory object on traning dataframe and testing dataframe")
+                print(input_feature_train_df)
+                preprocessor.fit(input_feature_train_df)
+                input_feature_train_arr=preprocessor.transform(input_feature_train_df)
 
                 logging.info("Used the preprocessor object to fit transfrom train data")
 
-
-                input_feature_test_arr=preprocessor.fit_transform(input_feature_test_df)
+                input_feature_test_arr=preprocessor.transform(input_feature_test_df)
 
                 logging.info("Used the preprocessor object to fit transfrom test data")
 
@@ -181,4 +188,4 @@ class DataTransformation:
 
 
         except Exception as e:
-            raise hosuingprojectException(e,sys)
+            raise hosuingprojectException(e,sys) from e
