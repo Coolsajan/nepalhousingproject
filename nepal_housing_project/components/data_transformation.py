@@ -40,54 +40,58 @@ class DataTransformation:
         except Exception as e:
             raise hosuingprojectException(e,sys)
         
-    def get_data_transformer_object(self)-> Pipeline:
-    
+    def get_data_transformer_object(self) -> Pipeline:
         """
-        Method Name : get_data_transformer_object
-        Description : This method creates and return a data transformer object for the data
-
-        Output : data transformer object is created and returned
-        On failuer : write an exception log and raise exception
+        Method Name :   get_data_transformer_object
+        Description :   This method creates and returns a data transformer object for the data
+        
+        Output      :   data transformer object is created and returned 
+        On Failure  :   Write an exception log and then raise an exception
         """
-
-        logging.info("Entred gate_data_transformer_object method of DataTransformation class")
+        logging.info(
+            "Entered get_data_transformer_object method of DataTransformation class"
+        )
 
         try:
             logging.info("Got numerical cols from schema config")
 
-            oe_transformer=OrdinalEncoder()
-            ohe_transformer=OneHotEncoder(sparse_output=False,handle_unknown="infrequent_if_exist")
-            si_num_transformer=SimpleImputer(strategy="median")
-            si_cate_transformer=SimpleImputer(strategy="most_frequent")
-
-
-            logging.info("Initilization Ordinal Encoding,OneHot Encoding")
-
-            oe_columns=self._schema_config['oe_columns']
-
-            ohe_columns=self._schema_config['ohe_columns']
-            si_num_columns=self._schema_config['si_num_columns']
-            si_cate_columns=self._schema_config['si_cate_columns']
-            powertransform_columns=self._schema_config['power_transformer']
-
-            logging.info("Initilize Power Transformer")
-
-            transfrom_pipe=Pipeline(steps=[
-                ("transformer_column",PowerTransformer(method="yeo-johnson"))
-            ])
-
-
-            preprocessor=ColumnTransformer([
-                ("si_cate",si_cate_transformer,si_cate_columns),
-                ("si_num",si_num_transformer,si_num_columns),
-                ("ordinal_encoder",oe_transformer,oe_columns),
-                ("onehot_encoder",ohe_transformer,ohe_columns),
-                ("powertransformer",transfrom_pipe,powertransform_columns)
-
-                ]                
-                ,remainder='passthrough')
             
-            logging.info("Data Transformation .preprocess object achived.")
+            oh_transformer = OneHotEncoder(sparse_output=False,handle_unknown="infrequent_if_exist")
+            ordinal_encoder = OrdinalEncoder()
+            simple_imputer_num=SimpleImputer(strategy="median")
+            simple_imputer_cate=SimpleImputer(strategy="most_frequent")
+
+
+
+            logging.info("Initialized imputer, OneHotEncoder, OrdinalEncoder")
+
+            oh_columns = self._schema_config['ohe_columns']
+            or_columns = self._schema_config['oe_columns']
+            transform_columns = self._schema_config['power_transformer']
+            num_features = self._schema_config['si_num_columns']
+            cate_features = self._schema_config['si_cate_columns']
+
+
+            logging.info("Initialize PowerTransformer")
+
+            transform_pipe = Pipeline(steps=[
+                ('transformer', PowerTransformer(method='yeo-johnson'))
+            ])
+            preprocessor = ColumnTransformer(
+                [
+                    ("si_num", simple_imputer_num, num_features),
+                    ("si_cate", simple_imputer_cate, cate_features),                   
+                    ("OneHotEncoder", oh_transformer, oh_columns),
+                    ("Ordinal_Encoder", ordinal_encoder, or_columns),
+                    ("Transformer", transform_pipe, transform_columns),
+                ]
+            )
+
+            logging.info("Created preprocessor object from ColumnTransformer")
+
+            logging.info(
+                "Exited get_data_transformer_object method of DataTransformation class"
+            )
             return preprocessor
         except Exception as e:
             raise hosuingprojectException(e,sys)
@@ -120,7 +124,6 @@ class DataTransformation:
                 test_df=test_df.dropna(subset=["PRICE","LAND AREA"])
 
 
-
                 input_feature_train_df = train_df.drop(columns=[TARGET_COLUMN], axis=1)
                 target_feature_train_df = train_df[TARGET_COLUMN]
 
@@ -150,9 +153,10 @@ class DataTransformation:
                 logging.info("Got tain feature and test feature of testing dataset")
 
                 logging.info("Applying preprocessory object on traning dataframe and testing dataframe")
-                print(input_feature_train_df)
-                preprocessor.fit(input_feature_train_df)
-                input_feature_train_arr=preprocessor.transform(input_feature_train_df)
+
+                print(input_feature_test_df)
+                #preprocessor.fit(input_feature_train_df)
+                input_feature_train_arr=preprocessor.fit_transform(input_feature_train_df)
 
                 logging.info("Used the preprocessor object to fit transfrom train data")
 

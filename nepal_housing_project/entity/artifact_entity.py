@@ -18,3 +18,17 @@ class DataTransformationArtifact:
     transformed_object_file_path:str
     transformed_train_file_path:str
     transformed_test_file_path:str
+
+@dataclass
+class RegressorMetricArtifact:
+    mean_sqr_error:float
+    root_mean_sqr_error:float
+    r_2_score:float
+
+@dataclass
+class ModelTrainerArtifact:
+    trained_model_file_path:str
+    metric_artifact:RegressorMetricArtifact
+
+
+

@@ -4,12 +4,15 @@ from nepal_housing_project.exception import hosuingprojectException
 from nepal_housing_project.components.data_ingestion import DataIngestion
 from nepal_housing_project.components.data_validation import DataValidation
 from nepal_housing_project.components.data_transformation import DataTransformation
+from nepal_housing_project.components.model_trainer import ModelTrainer
 from nepal_housing_project.entity.config_entity import (DataIngestionConfig,
                                                         DataValidationConfig,
-                                                        DataTransformationConfig)
+                                                        DataTransformationConfig,
+                                                        ModelTraningConfig)
 from nepal_housing_project.entity.artifact_entity import (DataingestionArtifact,
                                                           DataValidationArtifact,
-                                                          DataTransformationArtifact)
+                                                          DataTransformationArtifact,
+                                                          ModelTrainerArtifact)
 
 
 class TrainPipeline:
@@ -17,6 +20,7 @@ class TrainPipeline:
             self.data_ingestion_config=DataIngestionConfig()
             self.data_validation_config=DataValidationConfig()
             self.data_transformation_config=DataTransformationConfig()
+            self.model_trainer_config=ModelTraningConfig()
 
 
     def start_data_ingestion(self) -> DataingestionArtifact:
@@ -72,7 +76,22 @@ class TrainPipeline:
         except Exception as e:
             raise hosuingprojectException(e,sys)
 
-            
+    def start_model_traning(self,data_transformation_artifact: DataTransformationArtifact)->ModelTrainerArtifact:
+        """
+        This method of TrainPipeline class is responsibile for starting model traning
+        """
+        try:
+             model_trainer=ModelTrainer(data_transformation_artifact=data_transformation_artifact,
+                                        model_trainer_config=self.model_trainer_config)
+             model_trainer_artifact=model_trainer.initiate_model_trainer()
+             return model_trainer_artifact
+        
+        except Exception as e:
+             raise hosuingprojectException(sys,e) from e
+         
+
+
+
     def run_pipeline(self, )->None:
             '''
             This method of TrainPipleline class is responsible for running complete pipeline
@@ -83,9 +102,10 @@ class TrainPipeline:
                     data_transformation_artifact = self.start_data_transformation(
                                                     data_ingestion_artifact=data_ingestion_artifact, 
                                                     data_validation_artifact=data_validation_artifact)
+                    model_trainer_artifact = self.start_model_traning(data_transformation_artifact=data_transformation_artifact)
+                         
+                    
             except Exception as e:
-                  raise hosuingprojectException(e,sys)
-
-
+                raise hosuingprojectException(e,sys)
                 
             

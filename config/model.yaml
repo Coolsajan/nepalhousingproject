@@ -1,0 +1,130 @@
+grid_search:
+  class: GridSearchCV
+  module: sklearn.model_selection
+  params:
+    cv: 3
+    verbose: 3
+
+model_selection:
+  module_0:
+    class: DecisionTreeRegressor
+    module: sklearn.tree
+    params:
+     max_depth:
+      - 1
+     min_sample_split:
+      - 2
+     min_sample_leaf:
+      - 3
+     criterion:
+      - squared_error      
+    search_param_grid:
+      max_depth:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 10
+      - 15
+      - None
+      
+      min_sample_split:
+      - 2
+      - 5
+      - 3
+      - 10
+
+      min_sample_leaf:
+      - 1
+      - 2 
+      - 3
+      - 5
+
+      criterion:
+      - squared_error
+      - absolute_error
+      - poisson
+      - friedman_mse
+
+  module_1:
+    class: LGBMRegressor
+    module: lightgbm
+    params:
+      n_estimators:
+       - 100
+      learning_rate:
+       - 0.01
+      max_depth:
+       -3
+      num_leaves:
+       - 20
+    search_param_grid:
+      n_estimators:
+      - 100
+      - 200
+      - 300
+      learning_rate:
+      - 0.01
+      - 0.05
+      - 0.1
+      max_depth:
+      - 3
+      - 5
+      - 7
+      num_leaves:
+      - 20
+      - 30
+      - 50
+      min_child_sample:
+      - 10
+      - 20
+      - 30
+      subsample:
+      - 0.6
+      - 0.8
+      - 1.0
+      colsample_bytree:
+      - 0.6
+      - 0.8
+      - 1.0
+      reg_alpha:
+      - 0
+      - 0.1
+      - 0.5
+      reg_lambda:
+      - 0
+      - 0.1
+      - 0.5
+
+  module_2:
+    class: RandomForestRegressor
+    module: sklearn.ensemble
+    params:
+      n_estimators:
+       - 100
+    search_param_grid:
+      n_estimators:
+      - 100
+      - 200
+      - 300
+      max_depth:
+       - 5
+       - 2
+       - 3
+       - 10
+       - 15
+       - None
+      min_samples_split:
+       - 2
+       - 5
+       - 10
+      min_sample_leaf:
+       - 1
+       - 2
+       - 4
+      max_features:
+       - sqrt
+       - log2
+      bootstrap:
+       - True
+       - False

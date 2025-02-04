@@ -1,14 +1,14 @@
 columns:
-  - LOCATION : category
-  - PRICE : float64
-  - LAND AREA : float64
-  - ROAD ACCESS : float64
-  - FACING : category
-  - FLOOR : float64
-  - BEDROOM : float64
-  - BATHROOM : float64
-  - PROPERTY AGE : float64
-  - CITY : category
+  - LOCATION: category
+  - PRICE: float64
+  - LAND AREA: float64
+  - ROAD ACCESS: float64
+  - FACING: category
+  - FLOOR: float64
+  - BEDROOM: float64
+  - BATHROOM: float64
+  - PROPERTY AGE: float64
+  - CITY: category
 
 numerical_columns:
   - PRICE

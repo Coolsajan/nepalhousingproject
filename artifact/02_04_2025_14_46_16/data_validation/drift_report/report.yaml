@@ -1,0 +1,2159 @@
+data_drift:
+  data:
+    cat_feature_names:
+    - CITY
+    - FACING
+    - LOCATION
+    datetime_feature_names: []
+    metrics:
+      BATHROOM:
+        current_small_hist:
+          x:
+          - 1.0
+          - 3.1
+          - 5.2
+          - 7.300000000000001
+          - 9.4
+          - 11.5
+          - 13.600000000000001
+          - 15.700000000000001
+          - 17.8
+          - 19.900000000000002
+          - 22.0
+          y:
+          - 0.17081782612844737
+          - 0.2576581734898368
+          - 0.04103444985208511
+          - 0.003817158125775361
+          - 0.0
+          - 0.0009542895314438394
+          - 0.0
+          - 0.0009542895314438402
+          - 0.0
+          - 0.000954289531443841
+        drift_detected: false
+        drift_score: 0.061826856598368056
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 1.0
+          - 4.3
+          - 7.6
+          - 10.899999999999999
+          - 14.2
+          - 17.5
+          - 20.799999999999997
+          - 24.099999999999998
+          - 27.4
+          - 30.7
+          - 34.0
+          y:
+          - 0.20861341616058598
+          - 0.08839027706952236
+          - 0.004944910605287966
+          - 0.0003090569128304977
+          - 0.00015452845641524885
+          - 0.00015452845641524901
+          - 0.00015452845641524885
+          - 0.0
+          - 0.0
+          - 0.0003090569128304977
+        stattest_name: Wasserstein distance (normed)
+      BEDROOM:
+        current_small_hist:
+          x:
+          - 1.0
+          - 4.5
+          - 8.0
+          - 11.5
+          - 15.0
+          - 18.5
+          - 22.0
+          - 25.5
+          - 29.0
+          - 32.5
+          - 36.0
+          y:
+          - 0.0985797827903091
+          - 0.16764132553606237
+          - 0.015594541910331383
+          - 0.001670843776106934
+          - 0.001113895850737956
+          - 0.000556947925368978
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.000556947925368978
+        drift_detected: false
+        drift_score: 0.07395202925477656
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 1.0
+          - 4.3
+          - 7.6
+          - 10.899999999999999
+          - 14.2
+          - 17.5
+          - 20.799999999999997
+          - 24.099999999999998
+          - 27.4
+          - 30.7
+          - 34.0
+          y:
+          - 0.11133266866068461
+          - 0.16360010876461525
+          - 0.01903380766790538
+          - 0.006495664521586754
+          - 0.0012084957249463729
+          - 0.00030212393123659354
+          - 0.0006042478624731864
+          - 0.0
+          - 0.0003021239312365932
+          - 0.0001510619656182966
+        stattest_name: Wasserstein distance (normed)
+      CITY:
+        current_small_hist:
+          x:
+          - bhaktapur
+          - kathmandu
+          - lalitpur
+          y:
+          - 16
+          - 356
+          - 171
+        drift_detected: false
+        drift_score: 0.018633313716847136
+        feature_type: cat
+        ref_small_hist:
+          x:
+          - bhaktapur
+          - kathmandu
+          - lalitpur
+          y:
+          - 49
+          - 1464
+          - 659
+        stattest_name: Jensen-Shannon distance
+      FACING:
+        current_small_hist:
+          x:
+          - east
+          - east-north
+          - east-south
+          - east-west
+          - north
+          - north-east
+          - north-west
+          - south
+          - south-east
+          - south-west
+          - west
+          y:
+          - 130
+          - 37
+          - 45
+          - 1
+          - 73
+          - 3
+          - 12
+          - 116
+          - 4
+          - 32
+          - 80
+        drift_detected: false
+        drift_score: 0.05367716267581449
+        feature_type: cat
+        ref_small_hist:
+          x:
+          - east
+          - east-north
+          - east-south
+          - east-west
+          - north
+          - north-east
+          - north-west
+          - south
+          - south-east
+          - south-west
+          - west
+          y:
+          - 471
+          - 133
+          - 181
+          - 0
+          - 336
+          - 10
+          - 80
+          - 435
+          - 8
+          - 119
+          - 337
+        stattest_name: Jensen-Shannon distance
+      FLOOR:
+        current_small_hist:
+          x:
+          - 1.0
+          - 1.6
+          - 2.2
+          - 2.8
+          - 3.4
+          - 4.0
+          - 4.6
+          - 5.2
+          - 5.8
+          - 6.3999999999999995
+          - 7.0
+          y:
+          - 0.06892230576441102
+          - 0.09398496240601502
+          - 1.1121553884711786
+          - 0.17543859649122803
+          - 0.15037593984962402
+          - 0.037593984962406034
+          - 0.009398496240601495
+          - 0.009398496240601508
+          - 0.0062656641604010065
+          - 0.0031328320802004985
+        drift_detected: false
+        drift_score: 0.06859293983229263
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 1.0
+          - 1.7
+          - 2.4
+          - 3.0999999999999996
+          - 3.8
+          - 4.5
+          - 5.199999999999999
+          - 5.8999999999999995
+          - 6.6
+          - 7.3
+          - 8.0
+          y:
+          - 0.06505700871898056
+          - 0.08517773306505702
+          - 1.0637156270959092
+          - 0.13011401743796105
+          - 0.03085177733065056
+          - 0.0348759221998659
+          - 0.006706908115358818
+          - 0.010731052984574108
+          - 0.0006706908115358817
+          - 0.0006706908115358817
+        stattest_name: Wasserstein distance (normed)
+      LAND AREA:
+        current_small_hist:
+          x:
+          - 4.2
+          - 1304.33
+          - 2604.4599999999996
+          - 3904.5899999999992
+          - 5204.719999999999
+          - 6504.849999999999
+          - 7804.979999999999
+          - 9105.11
+          - 10405.24
+          - 11705.369999999999
+          - 13005.5
+          y:
+          - 0.00029593837871002724
+          - 0.00037456934889868186
+          - 5.289719812691309e-05
+          - 1.5726194037730912e-05
+          - 2.001515604802116e-05
+          - 4.288962010290252e-06
+          - 1.429654003430081e-06
+          - 0.0
+          - 1.4296540034300841e-06
+          - 2.859308006860164e-06
+        drift_detected: false
+        drift_score: 0.07023226978525203
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 0.0
+          - 3645.013
+          - 7290.026
+          - 10935.039
+          - 14580.052
+          - 18225.065
+          - 21870.078
+          - 25515.091
+          - 29160.104
+          - 32805.117
+          - 36450.13
+          y:
+          - 0.0002596798679877546
+          - 1.2499325669351648e-05
+          - 7.652648368990803e-07
+          - 3.8263241844954036e-07
+          - 2.550882789663602e-07
+          - 1.2754413948317996e-07
+          - 2.550882789663602e-07
+          - 1.275441394831801e-07
+          - 0.0
+          - 2.550882789663602e-07
+        stattest_name: Wasserstein distance (normed)
+      LOCATION:
+        current_small_hist:
+          x:
+          - ' bafal'
+          - ' balambu'
+          - ' baneshwor'
+          - ' banglamukhi'
+          - ' baniyatar'
+          - ' bansbari'
+          - ' bhaisepati'
+          - ' bhatbhateni'
+          - ' boudha'
+          - ' budhanikantha'
+          - ' budhanilkantha'
+          - ' chamati'
+          - ' chandagiri'
+          - ' chandragiri'
+          - ' chauni'
+          - ' dahachowk'
+          - ' dallu'
+          - ' dhapasi'
+          - ' dhapasi height'
+          - ' dhungedhara'
+          - ' gairgaun'
+          - ' godamchaur'
+          - ' golfutar'
+          - ' gongabu'
+          - ' grande'
+          - ' halchowk'
+          - ' hatigauda'
+          - ' hattiban'
+          - ' ichangunarayan'
+          - ' imadol'
+          - ' jharuwarasi'
+          - ' kalimati'
+          - ' kapan'
+          - ' kaushaltar'
+          - ' khumaltar'
+          - ' kimdol'
+          - ' kusunti'
+          - ' lazimpat'
+          - ' lolang'
+          - ' magargaun'
+          - ' mahankal '
+          - ' nagarjung'
+          - ' nagarjung-3'
+          - ' naicap'
+          - ' nakhipot'
+          - ' nakhu'
+          - ' nepaltar'
+          - ' raamkot'
+          - ' radha krishna'
+          - ' ramkot'
+          - ' raniban'
+          - ' sangam basti'
+          - ' sano bhanrayang'
+          - ' sano bharayang'
+          - ' sano bharyang'
+          - ' sano-bharyang'
+          - ' sanobharyang'
+          - ' satungal'
+          - ' sita-paila'
+          - ' sitapaila'
+          - ' sitapaila-5'
+          - ' sitapiala'
+          - ' sorakhutee'
+          - ' sorakhutte'
+          - ' swayambhu'
+          - ' swoyambhu'
+          - ' syuchatar'
+          - ' tarkeshwor'
+          - ' thankot'
+          - ' thulo bharayang'
+          - ' thulo bharyang'
+          - ' tokha'
+          - aakasedhara
+          - aarubari
+          - anamnagar
+          - ason
+          - attarkhel
+          - bafal
+          - bagbazar
+          - bagdol
+          - bagdurbar
+          - bageshwori
+          - balaju
+          - balambu
+          - balkhu
+          - balkot
+          - balkumari
+          - baluwa
+          - baluwakhani
+          - baluwatar
+          - banasthali
+          - baneshwor
+          - baniyatar
+          - bansbari
+          - basantanagar
+          - basanti chowk
+          - basundhara
+          - battisputali
+          - bauthali
+          - besigaun
+          - bhadrabas
+          - bhairabchaur
+          - bhaisepati
+          - bhaktapur
+          - 'bhangal '
+          - bhatkepati
+          - bhelpa
+          - bhimsengola
+          - 'bhutkhel '
+          - bijulibajar
+          - birendra chowk
+          - bishalnagar
+          - bistachhap
+          - boharatar
+          - bojepokhari
+          - bouddha
+          - buddha chowk
+          - buddha colony
+          - budhanilkanta
+          - budhanilkantha
+          - bungamati
+          - chabahil
+          - chakupat
+          - chamati
+          - chandol
+          - chandragiri
+          - changathali
+          - chapali
+          - chappal karkhana
+          - chardhara
+          - chardobato
+          - charkhal
+          - chhaling
+          - chhauni
+          - chhetrapati
+          - chundevi
+          - chunikhel
+          - chyasal
+          - chyasindol
+          - chyasundole
+          - chyau danda
+          - dadhikot
+          - dahachowk
+          - dakshindhoka
+          - dallu
+          - danchhi
+          - darjeeling height
+          - dawadi gaun
+          - deuwa chowk
+          - deuwa niwas
+          - dhaksi
+          - dhalmal
+          - dhaneshwor
+          - dhapakhel
+          - dhapasi
+          - dharmasthali
+          - dhobighat
+          - dhobikhola
+          - dholahiti
+          - dhumbarahi
+          - dhunchepakha
+          - dhungeadda
+          - dhungedhara
+          - dillibazar
+          - dulal gaun
+          - durbar marga
+          - duwakot
+          - ekantakuna
+          - ekatabasti
+          - gahana pokhari
+          - gairi gaun
+          - gairidhara
+          - galkopakha
+          - gamcha
+          - ganesh chowk
+          - gatthaghar
+          - gaurighat
+          - gaushala
+          - ghattekulo
+          - godamchaur
+          - godawari
+          - gokarna
+          - gokarneswhor
+          - goldhunga
+          - golfutar
+          - gongabu
+          - gopikrishna hall
+          - gorkarneshwor
+          - gothatar
+          - grande hospital
+          - grande villa
+          - greenhill city
+          - greenland chowk
+          - guheshwori
+          - gundu
+          - gurjudhara
+          - gwarko
+          - gyaneshwor
+          - handigaun
+          - harisiddhi
+          - hasantar
+          - hatti gauda
+          - hattiban
+          - hattidanda
+          - hattigaunda
+          - hepali height
+          - high vision colony
+          - ichangu narayan
+          - icimod
+          - imadol
+          - 'imadol '
+          - italitar
+          - jagdol
+          - jalpa chowk
+          - jarankhu
+          - jawalakhel
+          - jaya bageshwori
+          - jhamsikhel
+          - jharuwarasi
+          - jhaukhel
+          - jorpati
+          - jyotinagar
+          - kadaghari
+          - kageshwari manohara
+          - kageshwori
+          - kalanki
+          - kalikasthan
+          - kalimati
+          - kalopool
+          - kamalbinayak
+          - kamalpokhari
+          - kamitar
+          - kapan
+          - kapan gumba
+          - karyabinayak
+          - katunje
+          - katyani chowk
+          - kaushaltar
+          - kavresthali
+          - khadka gaun
+          - kharibot
+          - khichapokhari
+          - khumaltar
+          - khusibu
+          - khusibu town planning
+          - kirtipur
+          - koteshwor
+          - kuleshwor
+          - kumarigal
+          - kumaripati
+          - kupandole
+          - kusunti
+          - kwalakhu
+          - lainchaur
+          - lalitpur
+          - lamatar
+          - lambagar
+          - lasuntar
+          - lazimpat
+          - lele
+          - liwali
+          - lokanthali
+          - lolang
+          - lubhu
+          - machhapokhari
+          - machhe gaun
+          - 'machhegaun '
+          - mahadevsthan
+          - mahadevtar
+          - mahalaxmisthan
+          - mahankal
+          - maharajgunj
+          - maijubahal
+          - maitidevi
+          - maitrinagar
+          - makalbari
+          - maligaon
+          - manabahadur marga
+          - manamaiju
+          - manbhawan
+          - mandikatar
+          - mandikhatar
+          - manjushree marga
+          - matatirtha
+          - megha city
+          - mhaipi
+          - mid baneshwor
+          - minbhawan
+          - mitrapark
+          - mulpani
+          - nagajung
+          - nagarjun
+          - nagarjung
+          - nagaun
+          - nagdaha
+          - naikap
+          - nakhipot
+          - nakhudole
+          - nakkhu
+          - nalinchwok
+          - narayantar
+          - 'narayanthan '
+          - nardevi
+          - narephat
+          - naxal
+          - naya basti
+          - naya bazar
+          - nayabazar
+          - nayapati
+          - nepaltar
+          - new baneshwor
+          - new buspark
+          - new road
+          - nikhileshwor
+          - nil barahi mandir
+          - nilopool
+          - ochu height
+          - old baneshwor
+          - padamsal
+          - padma colony
+          - paiyatar
+          - paiyuntar
+          - paknajol
+          - panchetar
+          - panga
+          - panipokhari
+          - panitanki
+          - pasikot
+          - patan
+          - patitar
+          - pepsicola
+          - phulbari colony
+          - phutung
+          - pingalasthan
+          - purano naikap
+          - putalisadak
+          - radhe radhe
+          - rai chowk
+          - ram mandir
+          - ramkot
+          - raniban
+          - ranibari
+          - ratopool
+          - rudreshwor
+          - sai baba chowk
+          - sainbu
+          - sallaghari
+          - samakhushi chowk
+          - samakhusi
+          - sampang chowk
+          - sanagaun
+          - sanepa
+          - sano bharayang
+          - sano thimi
+          - sanobharyang
+          - saraswotinagar
+          - satdobato
+          - satungal
+          - setipakha
+          - shankhamul
+          - shantinagar
+          - shovahiti
+          - siddhartha colony
+          - simaltar
+          - sinamangal
+          - sipadol
+          - sirutar
+          - sitapaila
+          - soltidobato
+          - sorhakhutte
+          - special chowk
+          - srijana chowk
+          - srijananagar
+          - sudal
+          - sukedhara
+          - sunakothi
+          - sundarbasti
+          - suryabinayak
+          - suryadars.han height
+          - swoyambhu
+          - syuchatar
+          - tahachal
+          - tarkeshwor
+          - tathali
+          - taudaha
+          - taukhel
+          - taulung
+          - teku
+          - tenzing chowk
+          - thado dhunga
+          - thaiba
+          - thali
+          - thamel
+          - thankot
+          - thapagaun
+          - thapathali
+          - thecho
+          - thimi
+          - thulobharyang
+          - tikathali
+          - tilganga
+          - tilingtar
+          - tindhara
+          - tinkune
+          - tinthana
+          - tokha
+          - tokha height
+          - tokha saraswoti
+          - towkhel
+          - tripureshwor
+          - tundaldevi
+          - tyanglafat
+          - uttardhoka
+          - vinayak colony
+          - wasik
+          - yetkha
+          y:
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 1
+          - 0
+          - 1
+          - 1
+          - 0
+          - 2
+          - 0
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 1
+          - 0
+          - 3
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 3
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 2
+          - 1
+          - 0
+          - 0
+          - 1
+          - 1
+          - 2
+          - 1
+          - 1
+          - 6
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 2
+          - 1
+          - 1
+          - 0
+          - 5
+          - 4
+          - 2
+          - 0
+          - 0
+          - 6
+          - 1
+          - 1
+          - 4
+          - 2
+          - 0
+          - 1
+          - 1
+          - 0
+          - 34
+          - 3
+          - 9
+          - 1
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 1
+          - 2
+          - 1
+          - 2
+          - 0
+          - 0
+          - 33
+          - 0
+          - 1
+          - 0
+          - 0
+          - 3
+          - 4
+          - 2
+          - 3
+          - 2
+          - 0
+          - 0
+          - 0
+          - 1
+          - 1
+          - 0
+          - 1
+          - 3
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 3
+          - 0
+          - 0
+          - 2
+          - 1
+          - 4
+          - 12
+          - 0
+          - 0
+          - 0
+          - 1
+          - 4
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 1
+          - 0
+          - 3
+          - 1
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 1
+          - 0
+          - 1
+          - 6
+          - 2
+          - 0
+          - 0
+          - 4
+          - 2
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 1
+          - 4
+          - 0
+          - 2
+          - 3
+          - 0
+          - 0
+          - 8
+          - 1
+          - 4
+          - 3
+          - 0
+          - 1
+          - 1
+          - 43
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 2
+          - 1
+          - 1
+          - 1
+          - 5
+          - 0
+          - 2
+          - 0
+          - 0
+          - 0
+          - 0
+          - 14
+          - 0
+          - 1
+          - 1
+          - 0
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 6
+          - 3
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 1
+          - 1
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 4
+          - 1
+          - 1
+          - 0
+          - 2
+          - 3
+          - 0
+          - 0
+          - 3
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 2
+          - 2
+          - 0
+          - 2
+          - 6
+          - 0
+          - 1
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 2
+          - 0
+          - 2
+          - 0
+          - 0
+          - 0
+          - 1
+          - 13
+          - 1
+          - 7
+          - 0
+          - 2
+          - 3
+          - 1
+          - 1
+          - 3
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 0
+          - 2
+          - 0
+          - 1
+          - 0
+          - 1
+          - 3
+          - 0
+          - 1
+          - 0
+          - 1
+          - 1
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 10
+          - 0
+          - 0
+          - 4
+          - 0
+          - 0
+          - 0
+          - 0
+          - 2
+          - 0
+          - 0
+          - 3
+          - 0
+          - 1
+          - 0
+          - 0
+          - 3
+          - 0
+          - 1
+          - 0
+          - 1
+          - 2
+          - 0
+          - 2
+          - 3
+          - 0
+          - 1
+          - 2
+          - 1
+          - 5
+          - 1
+          - 2
+          - 2
+          - 1
+          - 0
+          - 0
+          - 0
+          - 1
+          - 2
+          - 0
+          - 8
+          - 0
+          - 2
+          - 0
+          - 0
+          - 1
+          - 1
+          - 6
+          - 3
+          - 3
+          - 1
+          - 1
+          - 0
+          - 3
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 4
+          - 1
+          - 1
+          - 9
+          - 0
+          - 1
+          - 1
+          - 0
+          - 1
+          - 5
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 1
+          - 0
+          - 1
+          - 0
+          - 0
+          - 1
+          - 0
+          - 2
+          - 0
+        drift_detected: true
+        drift_score: 0.34834682331065764
+        feature_type: cat
+        ref_small_hist:
+          x:
+          - ' bafal'
+          - ' balambu'
+          - ' baneshwor'
+          - ' banglamukhi'
+          - ' baniyatar'
+          - ' bansbari'
+          - ' bhaisepati'
+          - ' bhatbhateni'
+          - ' boudha'
+          - ' budhanikantha'
+          - ' budhanilkantha'
+          - ' chamati'
+          - ' chandagiri'
+          - ' chandragiri'
+          - ' chauni'
+          - ' dahachowk'
+          - ' dallu'
+          - ' dhapasi'
+          - ' dhapasi height'
+          - ' dhungedhara'
+          - ' gairgaun'
+          - ' godamchaur'
+          - ' golfutar'
+          - ' gongabu'
+          - ' grande'
+          - ' halchowk'
+          - ' hatigauda'
+          - ' hattiban'
+          - ' ichangunarayan'
+          - ' imadol'
+          - ' jharuwarasi'
+          - ' kalimati'
+          - ' kapan'
+          - ' kaushaltar'
+          - ' khumaltar'
+          - ' kimdol'
+          - ' kusunti'
+          - ' lazimpat'
+          - ' lolang'
+          - ' magargaun'
+          - ' mahankal '
+          - ' nagarjung'
+          - ' nagarjung-3'
+          - ' naicap'
+          - ' nakhipot'
+          - ' nakhu'
+          - ' nepaltar'
+          - ' raamkot'
+          - ' radha krishna'
+          - ' ramkot'
+          - ' raniban'
+          - ' sangam basti'
+          - ' sano bhanrayang'
+          - ' sano bharayang'
+          - ' sano bharyang'
+          - ' sano-bharyang'
+          - ' sanobharyang'
+          - ' satungal'
+          - ' sita-paila'
+          - ' sitapaila'
+          - ' sitapaila-5'
+          - ' sitapiala'
+          - ' sorakhutee'
+          - ' sorakhutte'
+          - ' swayambhu'
+          - ' swoyambhu'
+          - ' syuchatar'
+          - ' tarkeshwor'
+          - ' thankot'
+          - ' thulo bharayang'
+          - ' thulo bharyang'
+          - ' tokha'
+          - aakasedhara
+          - aarubari
+          - anamnagar
+          - ason
+          - attarkhel
+          - bafal
+          - bagbazar
+          - bagdol
+          - bagdurbar
+          - bageshwori
+          - balaju
+          - balambu
+          - balkhu
+          - balkot
+          - balkumari
+          - baluwa
+          - baluwakhani
+          - baluwatar
+          - banasthali
+          - baneshwor
+          - baniyatar
+          - bansbari
+          - basantanagar
+          - basanti chowk
+          - basundhara
+          - battisputali
+          - bauthali
+          - besigaun
+          - bhadrabas
+          - bhairabchaur
+          - bhaisepati
+          - bhaktapur
+          - 'bhangal '
+          - bhatkepati
+          - bhelpa
+          - bhimsengola
+          - 'bhutkhel '
+          - bijulibajar
+          - birendra chowk
+          - bishalnagar
+          - bistachhap
+          - boharatar
+          - bojepokhari
+          - bouddha
+          - buddha chowk
+          - buddha colony
+          - budhanilkanta
+          - budhanilkantha
+          - bungamati
+          - chabahil
+          - chakupat
+          - chamati
+          - chandol
+          - chandragiri
+          - changathali
+          - chapali
+          - chappal karkhana
+          - chardhara
+          - chardobato
+          - charkhal
+          - chhaling
+          - chhauni
+          - chhetrapati
+          - chundevi
+          - chunikhel
+          - chyasal
+          - chyasindol
+          - chyasundole
+          - chyau danda
+          - dadhikot
+          - dahachowk
+          - dakshindhoka
+          - dallu
+          - danchhi
+          - darjeeling height
+          - dawadi gaun
+          - deuwa chowk
+          - deuwa niwas
+          - dhaksi
+          - dhalmal
+          - dhaneshwor
+          - dhapakhel
+          - dhapasi
+          - dharmasthali
+          - dhobighat
+          - dhobikhola
+          - dholahiti
+          - dhumbarahi
+          - dhunchepakha
+          - dhungeadda
+          - dhungedhara
+          - dillibazar
+          - dulal gaun
+          - durbar marga
+          - duwakot
+          - ekantakuna
+          - ekatabasti
+          - gahana pokhari
+          - gairi gaun
+          - gairidhara
+          - galkopakha
+          - gamcha
+          - ganesh chowk
+          - gatthaghar
+          - gaurighat
+          - gaushala
+          - ghattekulo
+          - godamchaur
+          - godawari
+          - gokarna
+          - gokarneswhor
+          - goldhunga
+          - golfutar
+          - gongabu
+          - gopikrishna hall
+          - gorkarneshwor
+          - gothatar
+          - grande hospital
+          - grande villa
+          - greenhill city
+          - greenland chowk
+          - guheshwori
+          - gundu
+          - gurjudhara
+          - gwarko
+          - gyaneshwor
+          - handigaun
+          - harisiddhi
+          - hasantar
+          - hatti gauda
+          - hattiban
+          - hattidanda
+          - hattigaunda
+          - hepali height
+          - high vision colony
+          - ichangu narayan
+          - icimod
+          - imadol
+          - 'imadol '
+          - italitar
+          - jagdol
+          - jalpa chowk
+          - jarankhu
+          - jawalakhel
+          - jaya bageshwori
+          - jhamsikhel
+          - jharuwarasi
+          - jhaukhel
+          - jorpati
+          - jyotinagar
+          - kadaghari
+          - kageshwari manohara
+          - kageshwori
+          - kalanki
+          - kalikasthan
+          - kalimati
+          - kalopool
+          - kamalbinayak
+          - kamalpokhari
+          - kamitar
+          - kapan
+          - kapan gumba
+          - karyabinayak
+          - katunje
+          - katyani chowk
+          - kaushaltar
+          - kavresthali
+          - khadka gaun
+          - kharibot
+          - khichapokhari
+          - khumaltar
+          - khusibu
+          - khusibu town planning
+          - kirtipur
+          - koteshwor
+          - kuleshwor
+          - kumarigal
+          - kumaripati
+          - kupandole
+          - kusunti
+          - kwalakhu
+          - lainchaur
+          - lalitpur
+          - lamatar
+          - lambagar
+          - lasuntar
+          - lazimpat
+          - lele
+          - liwali
+          - lokanthali
+          - lolang
+          - lubhu
+          - machhapokhari
+          - machhe gaun
+          - 'machhegaun '
+          - mahadevsthan
+          - mahadevtar
+          - mahalaxmisthan
+          - mahankal
+          - maharajgunj
+          - maijubahal
+          - maitidevi
+          - maitrinagar
+          - makalbari
+          - maligaon
+          - manabahadur marga
+          - manamaiju
+          - manbhawan
+          - mandikatar
+          - mandikhatar
+          - manjushree marga
+          - matatirtha
+          - megha city
+          - mhaipi
+          - mid baneshwor
+          - minbhawan
+          - mitrapark
+          - mulpani
+          - nagajung
+          - nagarjun
+          - nagarjung
+          - nagaun
+          - nagdaha
+          - naikap
+          - nakhipot
+          - nakhudole
+          - nakkhu
+          - nalinchwok
+          - narayantar
+          - 'narayanthan '
+          - nardevi
+          - narephat
+          - naxal
+          - naya basti
+          - naya bazar
+          - nayabazar
+          - nayapati
+          - nepaltar
+          - new baneshwor
+          - new buspark
+          - new road
+          - nikhileshwor
+          - nil barahi mandir
+          - nilopool
+          - ochu height
+          - old baneshwor
+          - padamsal
+          - padma colony
+          - paiyatar
+          - paiyuntar
+          - paknajol
+          - panchetar
+          - panga
+          - panipokhari
+          - panitanki
+          - pasikot
+          - patan
+          - patitar
+          - pepsicola
+          - phulbari colony
+          - phutung
+          - pingalasthan
+          - purano naikap
+          - putalisadak
+          - radhe radhe
+          - rai chowk
+          - ram mandir
+          - ramkot
+          - raniban
+          - ranibari
+          - ratopool
+          - rudreshwor
+          - sai baba chowk
+          - sainbu
+          - sallaghari
+          - samakhushi chowk
+          - samakhusi
+          - sampang chowk
+          - sanagaun
+          - sanepa
+          - sano bharayang
+          - sano thimi
+          - sanobharyang
+          - saraswotinagar
+          - satdobato
+          - satungal
+          - setipakha
+          - shankhamul
+          - shantinagar
+          - shovahiti
+          - siddhartha colony
+          - simaltar
+          - sinamangal
+          - sipadol
+          - sirutar
+          - sitapaila
+          - soltidobato
+          - sorhakhutte
+          - special chowk
+          - srijana chowk
+          - srijananagar
+          - sudal
+          - sukedhara
+          - sunakothi
+          - sundarbasti
+          - suryabinayak
+          - suryadars.han height
+          - swoyambhu
+          - syuchatar
+          - tahachal
+          - tarkeshwor
+          - tathali
+          - taudaha
+          - taukhel
+          - taulung
+          - teku
+          - tenzing chowk
+          - thado dhunga
+          - thaiba
+          - thali
+          - thamel
+          - thankot
+          - thapagaun
+          - thapathali
+          - thecho
+          - thimi
+          - thulobharyang
+          - tikathali
+          - tilganga
+          - tilingtar
+          - tindhara
+          - tinkune
+          - tinthana
+          - tokha
+          - tokha height
+          - tokha saraswoti
+          - towkhel
+          - tripureshwor
+          - tundaldevi
+          - tyanglafat
+          - uttardhoka
+          - vinayak colony
+          - wasik
+          - yetkha
+          y:
+          - 5
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 4
+          - 0
+          - 0
+          - 1
+          - 9
+          - 3
+          - 2
+          - 0
+          - 1
+          - 1
+          - 5
+          - 0
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 2
+          - 1
+          - 1
+          - 1
+          - 3
+          - 1
+          - 5
+          - 1
+          - 1
+          - 0
+          - 1
+          - 2
+          - 1
+          - 1
+          - 0
+          - 1
+          - 1
+          - 1
+          - 9
+          - 1
+          - 1
+          - 1
+          - 0
+          - 1
+          - 1
+          - 1
+          - 4
+          - 5
+          - 1
+          - 3
+          - 3
+          - 2
+          - 1
+          - 3
+          - 3
+          - 1
+          - 28
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+          - 2
+          - 4
+          - 2
+          - 5
+          - 1
+          - 1
+          - 2
+          - 6
+          - 1
+          - 1
+          - 0
+          - 0
+          - 18
+          - 2
+          - 3
+          - 1
+          - 1
+          - 3
+          - 1
+          - 3
+          - 7
+          - 7
+          - 2
+          - 10
+          - 15
+          - 14
+          - 4
+          - 7
+          - 13
+          - 1
+          - 0
+          - 8
+          - 1
+          - 1
+          - 0
+          - 1
+          - 2
+          - 129
+          - 0
+          - 32
+          - 1
+          - 1
+          - 4
+          - 2
+          - 1
+          - 2
+          - 2
+          - 1
+          - 3
+          - 2
+          - 6
+          - 1
+          - 1
+          - 1
+          - 139
+          - 1
+          - 4
+          - 1
+          - 2
+          - 8
+          - 5
+          - 2
+          - 5
+          - 5
+          - 1
+          - 1
+          - 1
+          - 0
+          - 4
+          - 1
+          - 1
+          - 9
+          - 2
+          - 1
+          - 1
+          - 1
+          - 2
+          - 3
+          - 1
+          - 2
+          - 4
+          - 1
+          - 1
+          - 8
+          - 1
+          - 1
+          - 0
+          - 1
+          - 14
+          - 56
+          - 6
+          - 4
+          - 1
+          - 3
+          - 7
+          - 1
+          - 5
+          - 4
+          - 1
+          - 1
+          - 1
+          - 1
+          - 3
+          - 9
+          - 2
+          - 3
+          - 0
+          - 1
+          - 1
+          - 12
+          - 3
+          - 4
+          - 2
+          - 4
+          - 1
+          - 5
+          - 1
+          - 1
+          - 12
+          - 25
+          - 12
+          - 2
+          - 3
+          - 10
+          - 7
+          - 9
+          - 2
+          - 1
+          - 1
+          - 1
+          - 6
+          - 9
+          - 2
+          - 0
+          - 6
+          - 1
+          - 1
+          - 33
+          - 1
+          - 32
+          - 16
+          - 1
+          - 6
+          - 1
+          - 185
+          - 1
+          - 3
+          - 0
+          - 1
+          - 10
+          - 3
+          - 2
+          - 1
+          - 1
+          - 1
+          - 1
+          - 9
+          - 6
+          - 0
+          - 1
+          - 15
+          - 2
+          - 2
+          - 3
+          - 1
+          - 1
+          - 1
+          - 40
+          - 1
+          - 3
+          - 7
+          - 2
+          - 1
+          - 3
+          - 4
+          - 8
+          - 1
+          - 13
+          - 2
+          - 1
+          - 2
+          - 9
+          - 4
+          - 1
+          - 0
+          - 5
+          - 16
+          - 1
+          - 3
+          - 2
+          - 0
+          - 2
+          - 1
+          - 6
+          - 1
+          - 1
+          - 1
+          - 9
+          - 9
+          - 6
+          - 1
+          - 2
+          - 5
+          - 2
+          - 1
+          - 1
+          - 11
+          - 1
+          - 4
+          - 1
+          - 6
+          - 0
+          - 4
+          - 7
+          - 1
+          - 4
+          - 31
+          - 1
+          - 7
+          - 2
+          - 2
+          - 5
+          - 1
+          - 2
+          - 9
+          - 1
+          - 2
+          - 1
+          - 1
+          - 2
+          - 3
+          - 16
+          - 4
+          - 20
+          - 1
+          - 5
+          - 14
+          - 0
+          - 1
+          - 8
+          - 7
+          - 4
+          - 1
+          - 1
+          - 5
+          - 2
+          - 4
+          - 4
+          - 2
+          - 2
+          - 0
+          - 7
+          - 4
+          - 0
+          - 1
+          - 1
+          - 3
+          - 1
+          - 2
+          - 3
+          - 2
+          - 1
+          - 25
+          - 1
+          - 1
+          - 11
+          - 1
+          - 4
+          - 1
+          - 1
+          - 5
+          - 3
+          - 2
+          - 1
+          - 6
+          - 5
+          - 2
+          - 2
+          - 14
+          - 1
+          - 6
+          - 2
+          - 5
+          - 11
+          - 4
+          - 10
+          - 13
+          - 1
+          - 2
+          - 4
+          - 1
+          - 8
+          - 5
+          - 9
+          - 5
+          - 4
+          - 1
+          - 3
+          - 1
+          - 1
+          - 1
+          - 1
+          - 37
+          - 1
+          - 2
+          - 1
+          - 1
+          - 0
+          - 2
+          - 21
+          - 11
+          - 16
+          - 1
+          - 1
+          - 7
+          - 17
+          - 6
+          - 1
+          - 1
+          - 1
+          - 5
+          - 3
+          - 1
+          - 3
+          - 2
+          - 8
+          - 2
+          - 4
+          - 34
+          - 1
+          - 3
+          - 9
+          - 1
+          - 10
+          - 28
+          - 1
+          - 1
+          - 1
+          - 2
+          - 2
+          - 10
+          - 1
+          - 2
+          - 1
+          - 0
+          - 1
+          - 2
+          - 1
+          - 2
+          - 1
+          - 2
+        stattest_name: Jensen-Shannon distance
+      PRICE:
+        current_small_hist:
+          x:
+          - 9800000.0
+          - 48820000.0
+          - 87840000.0
+          - 126860000.0
+          - 165880000.0
+          - 204900000.0
+          - 243920000.0
+          - 282940000.0
+          - 321960000.0
+          - 360980000.0
+          - 400000000.0
+          y:
+          - 1.9971729241414658e-08
+          - 3.904247821629934e-09
+          - 8.00871348026653e-10
+          - 6.006535110199897e-10
+          - 2.5027229625832906e-10
+          - 0.0
+          - 0.0
+          - 0.0
+          - 5.005445925166581e-11
+          - 5.005445925166581e-11
+        drift_detected: true
+        drift_score: 0.10654273117313093
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 2680000.0
+          - 28412000.0
+          - 54144000.0
+          - 79876000.0
+          - 105608000.0
+          - 131340000.0
+          - 157072000.0
+          - 182804000.0
+          - 208536000.0
+          - 234268000.0
+          - 260000000.0
+          y:
+          - 1.4473962835555651e-08
+          - 1.7179553274097425e-08
+          - 4.521930872807582e-09
+          - 1.5136170285548394e-09
+          - 5.865265985650002e-10
+          - 3.0272340571096787e-10
+          - 1.5136170285548394e-10
+          - 7.568085142774197e-11
+          - 1.8920212856935492e-11
+          - 3.7840425713870984e-11
+        stattest_name: Wasserstein distance (normed)
+      PROPERTY AGE:
+        current_small_hist:
+          x:
+          - 1.0
+          - 4.0
+          - 7.0
+          - 10.0
+          - 13.0
+          - 16.0
+          - 19.0
+          - 22.0
+          - 25.0
+          - 28.0
+          - 31.0
+          y:
+          - 0.058240396530359353
+          - 0.09975216852540272
+          - 0.06381660470879802
+          - 0.04151177199504337
+          - 0.019206939281288724
+          - 0.01982651796778191
+          - 0.01486988847583643
+          - 0.007434944237918215
+          - 0.004956629491945477
+          - 0.0037174721189591076
+        drift_detected: false
+        drift_score: 0.0259944487984283
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 1.0
+          - 4.3
+          - 7.6
+          - 10.899999999999999
+          - 14.2
+          - 17.5
+          - 20.799999999999997
+          - 24.099999999999998
+          - 27.4
+          - 30.7
+          - 34.0
+          y:
+          - 0.07381688331851351
+          - 0.0963994862457834
+          - 0.0405075440007904
+          - 0.043189228098403684
+          - 0.015102115707611745
+          - 0.009879888780680591
+          - 0.017219234732043297
+          - 0.0039519555122722325
+          - 0.0005645650731817475
+          - 0.0023994015610224267
+        stattest_name: Wasserstein distance (normed)
+      ROAD ACCESS:
+        current_small_hist:
+          x:
+          - 0.0
+          - 38.4
+          - 76.8
+          - 115.19999999999999
+          - 153.6
+          - 192.0
+          - 230.39999999999998
+          - 268.8
+          - 307.2
+          - 345.59999999999997
+          - 384.0
+          y:
+          - 0.025945748925721303
+          - 4.795887047268263e-05
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 4.7958870472682586e-05
+        drift_detected: false
+        drift_score: 0.025598925402909364
+        feature_type: num
+        ref_small_hist:
+          x:
+          - 0.0
+          - 59.1
+          - 118.2
+          - 177.3
+          - 236.4
+          - 295.5
+          - 354.6
+          - 413.7
+          - 472.8
+          - 531.9
+          - 591.0
+          y:
+          - 0.016889312679760557
+          - 0.0
+          - 0.0
+          - 0.0
+          - 7.790273376273321e-06
+          - 0.0
+          - 0.0
+          - 7.790273376273316e-06
+          - 0.0
+          - 1.5580546752546632e-05
+        stattest_name: Wasserstein distance (normed)
+      dataset_drift: false
+      n_drifted_features: 2
+      n_features: 10
+      share_drifted_features: 0.2
+    num_feature_names:
+    - BATHROOM
+    - BEDROOM
+    - FLOOR
+    - LAND AREA
+    - PRICE
+    - PROPERTY AGE
+    - ROAD ACCESS
+    options:
+      confidence: null
+      drift_share: 0.5
+      nbinsx: 10
+      xbins: null
+    target_names: null
+    text_feature_names: []
+    utility_columns:
+      date: null
+      id: null
+      prediction: null
+      target: null
+  datetime: '2025-02-04 14:46:18.965725'
+  name: data_drift
+timestamp: '2025-02-04 14:46:18.965725'
