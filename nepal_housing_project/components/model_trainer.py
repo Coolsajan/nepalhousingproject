@@ -1,15 +1,16 @@
 from nepal_housing_project.logger import logging
 from nepal_housing_project.exception import hosuingprojectException
-
 import os,sys
-
 from typing import Tuple
-
 import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import r2_score,mean_squared_error,root_mean_squared_error
-from neuro_mf import ModelFactory
+from nepal_housing_project.entity.model_selection import evaluate_model
+from sklearn.tree import DecisionTreeRegressor
+from lightgbm import LGBMRegressor
+from sklearn.ensemble import  RandomForestRegressor
+from sklearn.svm import SVR
 
 from nepal_housing_project.utils.main_utils import *
 from nepal_housing_project.entity.config_entity import ModelTraningConfig
@@ -31,30 +32,34 @@ class ModelTrainer:
     def get_model_object_and_report(self,train:np.array,test:np.array)->Tuple[object,object]:
         """
         Method Name :   get_model_object_and_report
-        Description :   This function uses neuro_mf to get the best model object and report of the best model
-        
+                
         Output      :   Returns metric artifact object and best model object
         On Failure  :   Write an exception log and then raise an exception
         """
         try:
-            logging.info("Using neuro_ml to get best model object and report")
-            model_factory = ModelFactory(model_config_path=self.model_trainer_config.model_config_file_path)
-            
+            logging.info("Using helper function on evaluate model.")
+            models={"DecisionTreeRegressor":DecisionTreeRegressor(),
+                    "LIGHTboost":LGBMRegressor(random_state=44),
+                    "RandomForest":RandomForestRegressor(random_state=44)
+                    }
+                        
             x_train, y_train, x_test, y_test = train[:, :-1], train[:, -1], test[:, :-1], test[:, -1]
-            print(train)
-            best_model_detail = model_factory.get_best_model(
-                X=x_train,y=y_train,base_accuracy=self.model_trainer_config.expected_accuracy
-            )
-            model_obj = best_model_detail.best_model
-            print(model_obj)
-            y_pred = model_obj.predict(x_test)
+            
+            model_report:dict=evaluate_model(X_train=x_train, y_train= y_train,X_test=x_test,y_test=y_test,models=models)
+            logging.info("Model evaluation started")
 
-            mean_sqr_error=mean_squared_error(y_test,y_pred)
-            root_mean_sqr_error=root_mean_squared_error(y_test,y_pred)
-            r_2_score=r2_score(y_test,y_pred)
-            metric_artifact=RegressorMetricArtifact(mean_sqr_error=mean_sqr_error,root_mean_sqr_error=root_mean_sqr_error,r_2_score=r_2_score)
+            best_model_score=max(sorted(model_report.values()))
 
-            return best_model_detail,metric_artifact
+            best_model=list(model_report.keys())[list(model_report.values()).index(best_model_score)]
+            
+            logging.info(f"The best model is: {best_model} with the r_2_score: {best_model_score}")
+            
+            metric_artifact=RegressorMetricArtifact(r_2_score=best_model_score)
+
+            return best_model,metric_artifact
+            
+
+
         except Exception as e:
             raise hosuingprojectException(e,sys) from e
         
@@ -72,16 +77,12 @@ class ModelTrainer:
             train_arr=load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_train_file_path)
             test_arr=load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_test_file_path)
 
-            best_model_detial,metric_artifact=self.get_model_object_and_report(train=train_arr,test=test_arr)
+            best_model,metric_artifact=self.get_model_object_and_report(train=train_arr,test=test_arr)
 
             preprocessing_obj=load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
-
-            if best_model_detial.best_score < self.model_trainer_config.expected_accuracy:
-                logging.info("No best model found with the score more the base score")
-                raise Exception('No best model found with the score more then base score')
         
             housing_model=HousingModel(preprocessing_object=preprocessing_obj,
-                                   trained_model_object=best_model_detial.best_model)
+                                   trained_model_object=best_model)
         
             logging.info("Created housing model with object with preprocessor and model")
             logging.info("Created best model file path")

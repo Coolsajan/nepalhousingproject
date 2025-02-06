@@ -21,8 +21,6 @@ class DataTransformationArtifact:
 
 @dataclass
 class RegressorMetricArtifact:
-    mean_sqr_error:float
-    root_mean_sqr_error:float
     r_2_score:float
 
 @dataclass

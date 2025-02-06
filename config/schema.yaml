@@ -29,6 +29,7 @@ oe_columns:
 ohe_columns:
   - LOCATION
 
+
 power_transformer:
   - LAND AREA
   - BEDROOM

@@ -59,7 +59,7 @@ class DataTransformation:
             oh_transformer = OneHotEncoder(sparse_output=False,handle_unknown="infrequent_if_exist")
             ordinal_encoder = OrdinalEncoder()
             simple_imputer_num=SimpleImputer(strategy="median")
-            simple_imputer_cate=SimpleImputer(strategy="most_frequent")
+            #simple_imputer_cate=SimpleImputer(strategy="most_frequent")
 
 
 
@@ -69,7 +69,7 @@ class DataTransformation:
             or_columns = self._schema_config['oe_columns']
             transform_columns = self._schema_config['power_transformer']
             num_features = self._schema_config['si_num_columns']
-            cate_features = self._schema_config['si_cate_columns']
+            #cate_features = self._schema_config['si_cate_columns']
 
 
             logging.info("Initialize PowerTransformer")
@@ -77,12 +77,22 @@ class DataTransformation:
             transform_pipe = Pipeline(steps=[
                 ('transformer', PowerTransformer(method='yeo-johnson'))
             ])
+
+            oh_pipeline = Pipeline(steps=[
+                ('imputer', SimpleImputer(strategy='most_frequent')),  # Impute first
+                ('onehot', oh_transformer)])
+            
+            or_pipeline = Pipeline(steps=[
+                ('imputer', SimpleImputer(strategy='most_frequent')),  # Impute first
+                ('ordinal', ordinal_encoder)])
+            
+
             preprocessor = ColumnTransformer(
                 [
                     ("si_num", simple_imputer_num, num_features),
-                    ("si_cate", simple_imputer_cate, cate_features),                   
-                    ("OneHotEncoder", oh_transformer, oh_columns),
-                    ("Ordinal_Encoder", ordinal_encoder, or_columns),
+                    #("si_cate", simple_imputer_cate, cate_features),                   
+                    ("OneHotEncoder", oh_pipeline, oh_columns),
+                    ("Ordinal_Encoder", or_pipeline, or_columns),
                     ("Transformer", transform_pipe, transform_columns),
                 ]
             )
@@ -168,7 +178,7 @@ class DataTransformation:
                 ]
 
                 test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
-
+                print(input_feature_test_arr[0],input_feature_train_arr[1])
 
                 save_object(self.data_transformation_config.transformed_object_file_path,preprocessor)
                 save_numpy_array_data(self.data_transformation_config.transformed_train_file_path,array=train_arr)
